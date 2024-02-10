@@ -21,8 +21,10 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'edit produk']);
         Permission::create(['name' => 'delete produk']);
         Permission::create(['name' => 'show produk']);
+        Permission::create(['name' => 'order & checkout produk']);
+        Permission::create(['name' => 'tambah cart produk']);
 
-        $role = Role::create(['name' => 'pembeli'])->givePermissionTo(['show produk']);
+        $role = Role::create(['name' => 'pembeli'])->givePermissionTo(['show produk', 'order & checkout produk', 'tambah cart produk']);
         $role = Role::create(['name' => 'admin'])->givePermissionTo(['tambah produk', 'edit produk', 'delete produk', 'show produk']);
     }
 }

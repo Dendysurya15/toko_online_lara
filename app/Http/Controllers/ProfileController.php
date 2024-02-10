@@ -14,6 +14,11 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
+
+    public function index()
+    {
+        return view('auth.login'); // Assuming 'auth.login' is the correct path to your login view
+    }
     public function edit(Request $request): View
     {
         return view('profile.edit', [
@@ -55,6 +60,6 @@ class ProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return Redirect::to('/');
+        return Redirect::route('login');
     }
 }

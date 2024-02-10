@@ -7,10 +7,10 @@ use App\Models\Produk;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
-use App\Livewire\Forms\PostForm;
 
 class Edit extends Component
 {
+    public $testbro = 0;
     public $product;
     public $nama_barang;
     public $pil_kategori;
@@ -25,11 +25,19 @@ class Edit extends Component
     public bool $errorSubmit = false;
     public string $msgError;
 
+    public function testgan()
+    {
+        $this->testbro++;
+    }
     public function mount()
     {
         $default = Kategori::first()->id;
 
         $this->pil_kategori = $default;
+    }
+    public function refreshComponent()
+    {
+        $this->mount();
     }
     public function render()
     {
@@ -67,6 +75,7 @@ class Edit extends Component
                 'pil_kategori',
                 'stok',
                 'harga',
+                'errorSubmit',  // Add any other properties you want to reset
             ]);
         } catch (Exception $e) {
             DB::rollBack();

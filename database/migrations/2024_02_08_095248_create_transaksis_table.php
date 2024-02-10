@@ -16,9 +16,10 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('produk_id');
             $table->integer('total');
+            $table->integer('jumlah');
             $table->integer('keterangan')->nullable();;
-            $table->integer('harga');
-            $table->date('waktu_transkasi');
+
+            $table->datetime('waktu_transaksi');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('produk_id')->references('id')->on('produks');
         });
