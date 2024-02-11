@@ -11,6 +11,7 @@ use Livewire\Component;
 
 class Dashboard extends Component
 {
+
     public $countKeranjang = 0;
     public $listKeranjang = [];
     public $clickedItems = [];
@@ -23,8 +24,13 @@ class Dashboard extends Component
     public string $msgSuccess;
     public bool $errorSubmit = false;
     public string $msgError;
+    public $successMessage;
+    protected $listeners = ['productDeleted'];
 
-
+    public function productDeleted($message)
+    {
+        $this->successMessage = $message;
+    }
     public function incrementCountPerItemCart($id)
     {
 

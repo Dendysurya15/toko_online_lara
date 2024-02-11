@@ -19,6 +19,12 @@
                     </div>
                     @endif
                     </p>
+
+                    @if(session('success'))
+                    <div class="p-4 mb-4 mt-4 text-sm text-green-800 rounded-lg bg-green-50" role="alert">
+                        <span class="font-medium">{{ session('success') }}</span>
+                    </div>
+                    @endif
                 </div>
                 <div class="col-end-6">
                     @if(auth()->user()->can('tambah produk'))
@@ -87,6 +93,7 @@
                                         <p class="mt-1 text-sm text-gray-500 ">
                                             Last updated {{$item->updated_at->diffForHumans()}}
                                         </p>
+
                                         <a class="mt-3 inline-flex items-center gap-x-1 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                                             href="{{route('edit_produk',['id'=>$item->id])}}">
                                             Edit Data
@@ -97,6 +104,20 @@
                                                 <path d="m9 18 6-6-6-6" />
                                             </svg>
                                         </a>
+
+                                        <form action="{{ route('delete_produk', ['id' => $item->id]) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button
+                                                class="mt-3 inline-flex items-center gap-x-1 text-sm font-semibold rounded-lg border border-transparent text-red-600 hover:text-red-800 disabled:opacity-50 disabled:pointer-events-none ">
+                                                Delete <svg class="flex-shrink-0 w-4 h-4"
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="m9 18 6-6-6-6" />
+                                                </svg>
+                                            </button>
+                                        </form>
                                     </div>
                                     @endif
 

@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/tambah_produk', [ProdukController::class, 'index'])->name('tambah_produk');
     Route::get('/edit_produk/{id}', [ProdukController::class, 'edit'])->name('edit_produk');
+    Route::delete('/delete_produk/{id}', [ProdukController::class, 'delete'])->name('delete_produk');
 });
 
 require __DIR__ . '/auth.php';
